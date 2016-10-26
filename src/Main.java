@@ -14,10 +14,8 @@ public class Main {
     public Main() {
         setPersons();
         averageWomanAge();
-
-        for (Person p : persons) {
-            System.err.println(p.getName() + " " + (p.isMale() ? "male" : "female") + " "  + p.getBirthday());
-        }
+        averageAgeAsList();
+        for (Person person : persons) { person.printPerson(); }
     }
 
     public static void main(String[] args) {
@@ -28,12 +26,10 @@ public class Main {
         persons = new ArrayList<Person>();
         for (int person = 0; person < NUMBER_OF_PERSONS; person++) {
             double randomNumber = Math.random() * 100;
-
             int yearDifference = (int) randomNumber;
             boolean gender = (yearDifference % 2 == 0);
             LocalDate birthday = LocalDate.now();
             birthday = birthday.minusYears(yearDifference);
-
             Person p = new Person("" + person, "name_" + person, birthday, gender);
             persons.add(p);
         }
@@ -49,7 +45,9 @@ public class Main {
 
         // Print average age among women.
         System.err.println(LocalDate.now().getYear() - average + " - Average age among women\n");
+    }
 
+    private void averageAgeAsList() {
         List<Double> averageAsList = Stream.of(
                 persons.stream()
                         .filter(p -> !p.isMale())
@@ -58,15 +56,13 @@ public class Main {
                 persons.stream()
                         .filter(p -> p.isMale())
                         .mapToInt(Person::getBirthday)
-                        .average().getAsDouble()
-        )
+                        .average().getAsDouble())
                 .collect(Collectors.toList());
 
         // Print average age as a gender separated list
-
         System.err.println("As list:\n---------");
         for (double averageElement : averageAsList) System.err.println(LocalDate.now().getYear() - averageElement);
-        System.err.println("---------");
+        System.err.println("---------\n");
     }
 }
 
@@ -93,5 +89,9 @@ class Person {
 
     public int getBirthday() {
         return birthday.getYear();
+    }
+
+    public void printPerson() {
+        System.err.println(id + " " + name + " " + (isMale() ? "male" : "female") + " " + birthday);
     }
 }
