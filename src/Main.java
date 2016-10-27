@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -15,11 +16,17 @@ public class Main {
         setPersons();
         averageWomanAge();
         averageAgeAsList();
-        for (Person person : persons) { person.printPerson(); }
+        genderMap();
+        printPeople();
     }
 
     public static void main(String[] args) {
         new Main();
+    }
+
+    private void printPeople() {
+        System.err.println("");
+        for (Person person : persons) { person.printPerson(); }
     }
 
     private void setPersons() {
@@ -64,6 +71,19 @@ public class Main {
         for (double averageElement : averageAsList) System.err.println(LocalDate.now().getYear() - averageElement);
         System.err.println("---------\n");
     }
+
+    private void genderMap() {
+        Map<Boolean, List<Person>> genderMap = persons.stream()
+                .collect(Collectors.groupingBy(Person::isMale));
+
+        // Print the map contents.
+        System.err.println("As map:\n---------");
+        List<Person> females = genderMap.get(false);
+        List<Person> males = genderMap.get(true);
+        for (Person male : males) male.printPerson();
+        System.err.println("----------");
+        for (Person female : females) female.printPerson();
+    }
 }
 
 class Person {
@@ -77,10 +97,6 @@ class Person {
         this.name = name;
         this.birthday = birthday;
         this.isMale = isMale;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public boolean isMale() {
