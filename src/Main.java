@@ -22,6 +22,10 @@ public class Main {
 
     public static void main(String[] args) {
         new Main();
+
+        Person p = new Person("ads", "asdkm", LocalDate.now(), true);
+        p.getBirthday();
+
     }
 
     private void printPeople() {
@@ -31,6 +35,7 @@ public class Main {
 
     private void setPersons() {
         persons = new ArrayList<Person>();
+
         for (int person = 0; person < NUMBER_OF_PERSONS; person++) {
             double randomNumber = Math.random() * 100;
             int yearDifference = (int) randomNumber;
@@ -43,15 +48,16 @@ public class Main {
     }
 
     private void averageWomanAge() {
+        final double thisYear = LocalDate.now().getYear();
         double average =
                 persons.stream()
                         .filter(p -> !p.isMale())
-                        .mapToInt(Person::getBirthday)
+                        .mapToInt(p -> (int) thisYear - p.getBirthday())
                         .average()
                         .getAsDouble();
 
         // Print average age among women.
-        System.err.println(LocalDate.now().getYear() - average + " - Average age among women\n");
+        System.err.println(average + " - Average age among women\n");
     }
 
     private void averageAgeAsList() {
