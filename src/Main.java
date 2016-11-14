@@ -34,7 +34,6 @@ public class Main {
 
     private void setPersons() {
         persons = new ArrayList<Person>();
-
         for (int person = 0; person < NUMBER_OF_PERSONS; person++) {
             double randomNumber = Math.random() * 100;
             int yearDifference = (int) randomNumber;
