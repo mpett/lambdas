@@ -22,7 +22,6 @@ public class Main {
 
     public static void main(String[] args) {
         new Main();
-
         Person p = new Person("ads", "asdkm", LocalDate.now(), true);
         p.getBirthday();
 
@@ -55,7 +54,6 @@ public class Main {
                         .mapToInt(p -> (int) thisYear - p.getBirthday())
                         .average()
                         .getAsDouble();
-
         // Print average age among women.
         System.err.println(average + " - Average age among women\n");
     }
@@ -71,7 +69,6 @@ public class Main {
                         .mapToInt(Person::getBirthday)
                         .average().getAsDouble())
                 .collect(Collectors.toList());
-
         // Print average age as a gender separated list
         System.err.println("As list:\n---------");
         for (double averageElement : averageAsList) System.err.println(LocalDate.now().getYear() - averageElement);
@@ -81,7 +78,6 @@ public class Main {
     private void genderMap() {
         Map<Boolean, List<Person>> genderMap = persons.stream()
                 .collect(Collectors.groupingBy(Person::isMale));
-
         // Print the map contents.
         System.err.println("As map:\n---------");
         List<Person> females = genderMap.get(false);
