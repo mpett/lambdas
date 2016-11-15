@@ -22,7 +22,7 @@ public class Main {
 
     public static void main(String[] args) {
         new Main();
-        Person p = new Person("ads", "asdkm", LocalDate.now(), true);
+        Person p = new Person("Martin", "Pettersson", LocalDate.now(), true);
         p.getBirthday();
 
     }
