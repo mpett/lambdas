@@ -1,5 +1,7 @@
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -18,13 +20,13 @@ public class Main {
         averageAgeAsList();
         genderMap();
         printPeople();
+        operations();
     }
 
     public static void main(String[] args) {
         new Main();
         Person p = new Person("Martin", "Pettersson", LocalDate.now(), true);
         p.getBirthday();
-
     }
 
     private void printPeople() {
@@ -84,6 +86,20 @@ public class Main {
         for (Person male : males) male.printPerson();
         System.err.println("----------");
         for (Person female : females) female.printPerson();
+    }
+
+    private void operations() {
+        List<List<String>> collection = Arrays.asList(Arrays.asList("Zsolt", "Martin"),
+                Arrays.asList("Johan", "Malin", "Petter"));
+        List<String> expected = Arrays.asList("Zsolt", "Martin", "Johan", "Malin", "Petter");
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        // assertThat(calculate(numbers)).isEqualTo(1 + 2 + 3 + 4 + 5);
+        LocalDate birthday = LocalDate.now();
+        Person jessica = new Person("Jessica", "j", birthday.minusYears(4), false);
+        Person aston = new Person("Aston", "a", birthday.minusYears(40), true);
+        Person martin = new Person("Martin", "m", birthday.minusYears(42), true);
+        List<Person> personCollection = Arrays.asList(jessica, aston, martin);
+        // assertThat(namesToString(collection)).isEqualTo("Names: Jessica, Aston, Martin.");
     }
 }
 
