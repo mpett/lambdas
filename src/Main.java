@@ -13,7 +13,33 @@ public class Main {
     private List<Person> persons;
     private final int NUMBER_OF_PERSONS = 15;
 
-    public Main() {
+    private class Person {
+        private String id;
+        private String name;
+        private LocalDate birthday;
+        private boolean isMale;
+
+        Person(String id, String name, LocalDate birthday, boolean isMale) {
+            this.id = id;
+            this.name = name;
+            this.birthday = birthday;
+            this.isMale = isMale;
+        }
+
+        boolean isMale() {
+            return isMale;
+        }
+
+        int getBirthday() {
+            return birthday.getYear();
+        }
+
+        void printPerson() {
+            System.err.println(id + " " + name + " " + (isMale() ? "male" : "female") + " " + birthday);
+        }
+    }
+
+    private Main() {
         setPersons();
         averageWomanAge();
         averageAgeAsList();
@@ -24,8 +50,6 @@ public class Main {
 
     public static void main(String[] args) {
         new Main();
-        Person p = new Person("Martin", "Pettersson", LocalDate.now(), true);
-        p.getBirthday();
     }
 
     private void printPeople() {
@@ -112,28 +136,4 @@ public class Main {
     }
 }
 
-class Person {
-    private String id;
-    private String name;
-    private LocalDate birthday;
-    private boolean isMale;
 
-    public Person(String id, String name, LocalDate birthday, boolean isMale) {
-        this.id = id;
-        this.name = name;
-        this.birthday = birthday;
-        this.isMale = isMale;
-    }
-
-    public boolean isMale() {
-        return isMale;
-    }
-
-    public int getBirthday() {
-        return birthday.getYear();
-    }
-
-    public void printPerson() {
-        System.err.println(id + " " + name + " " + (isMale() ? "male" : "female") + " " + birthday);
-    }
-}
