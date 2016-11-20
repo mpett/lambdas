@@ -93,12 +93,20 @@ public class Main {
         List<String> expected = Arrays.asList("Zsolt", "Martin", "Johan", "Malin", "Petter");
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
         // assertThat(calculate(numbers)).isEqualTo(1 + 2 + 3 + 4 + 5);
+        System.err.println(calculate(numbers));
         LocalDate birthday = LocalDate.now();
         Person jessica = new Person("Jessica", "j", birthday.minusYears(4), false);
         Person aston = new Person("Aston", "a", birthday.minusYears(40), true);
         Person martin = new Person("Martin", "m", birthday.minusYears(42), true);
         List<Person> personCollection = Arrays.asList(jessica, aston, martin);
         // assertThat(namesToString(collection)).isEqualTo("Names: Jessica, Aston, Martin.");
+    }
+
+    private int calculate(List<Integer> numbers) {
+        int result = 0;
+        for (int number : numbers)
+            result += number;
+        return result;
     }
 }
 
