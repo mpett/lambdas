@@ -94,6 +94,8 @@ public class Main {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
         // assertThat(calculate(numbers)).isEqualTo(1 + 2 + 3 + 4 + 5);
         System.err.println(calculate(numbers));
+        int sum = numbers.stream().mapToInt(number -> number.intValue()).sum();
+        System.err.println(sum);
         LocalDate birthday = LocalDate.now();
         Person jessica = new Person("Jessica", "j", birthday.minusYears(4), false);
         Person aston = new Person("Aston", "a", birthday.minusYears(40), true);
