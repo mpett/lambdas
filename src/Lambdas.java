@@ -34,6 +34,8 @@ public class Lambdas {
             return birthday.getYear();
         }
 
+        String getName() { return name; }
+
         void printPerson() {
             System.err.println(id + " " + name + " " + (isMale() ? "male" : "female") + " " + birthday);
         }
@@ -54,7 +56,9 @@ public class Lambdas {
 
     private void printPeople() {
         System.err.println("");
-        for (Person person : persons) { person.printPerson(); }
+        for (Person person : persons) {
+            person.printPerson();
+        }
     }
 
     private void setPersons() {
@@ -125,6 +129,11 @@ public class Lambdas {
         Person aston = new Person("Aston", "a", birthday.minusYears(40), true);
         Person martin = new Person("Martin", "m", birthday.minusYears(42), true);
         List<Person> personCollection = Arrays.asList(jessica, aston, martin);
+        List<String> names = personCollection.stream().map(Person::getName).collect(Collectors.toList());
+        System.err.print("Names: ");
+        for (String name : names)
+            System.err.print(name + " ");
+        System.err.println("");
         // assertThat(namesToString(collection)).isEqualTo("Names: Jessica, Aston, Martin.");
     }
 
