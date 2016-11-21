@@ -120,19 +120,16 @@ public class Lambdas {
                 Arrays.asList("Johan", "Malin", "Petter"));
         List<String> expected = Arrays.asList("Zsolt", "Martin", "Johan", "Malin", "Petter");
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
-        // assertThat(calculate(numbers)).isEqualTo(1 + 2 + 3 + 4 + 5);
         System.err.println(calculate(numbers));
         int sum = numbers.stream().mapToInt(number -> number.intValue()).sum();
-        System.err.println(sum);
-        LocalDate birthday = LocalDate.now();
-        Person jessica = new Person("Jessica", "j", birthday.minusYears(4), false);
-        Person aston = new Person("Aston", "a", birthday.minusYears(40), true);
-        Person martin = new Person("Martin", "m", birthday.minusYears(42), true);
+        System.err.println(sum); LocalDate birthday = LocalDate.now();
+        // assertThat(calculate(numbers)).isEqualTo(1 + 2 + 3 + 4 + 5);
+        Person jessica = new Person("j", "Jessica", birthday.minusYears(4), false);
+        Person aston = new Person("a", "Aston", birthday.minusYears(40), true);
+        Person martin = new Person("m", "Martin", birthday.minusYears(42), true);
         List<Person> personCollection = Arrays.asList(jessica, aston, martin);
         List<String> names = personCollection.stream().map(Person::getName).collect(Collectors.toList());
-        System.err.print("Names: ");
-        for (String name : names)
-            System.err.print(name + " ");
+        System.err.print("Names: "); for (String name : names) { System.err.print(name + " "); }
         System.err.println("");
         // assertThat(namesToString(collection)).isEqualTo("Names: Jessica, Aston, Martin.");
     }
