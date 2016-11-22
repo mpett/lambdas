@@ -120,10 +120,8 @@ public class Lambdas {
                 Arrays.asList("Johan", "Malin", "Petter"));
         List<String> expected = Arrays.asList("Zsolt", "Martin", "Johan", "Malin", "Petter");
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
-        System.err.println(calculate(numbers));
-        int sum = numbers.stream().mapToInt(number -> number.intValue()).sum();
-        System.err.println(sum); LocalDate birthday = LocalDate.now();
-        // assertThat(calculate(numbers)).isEqualTo(1 + 2 + 3 + 4 + 5);
+        LocalDate birthday = LocalDate.now();
+        assert (calculate(numbers) == (1 + 2 + 3 + 4 + 5));
         Person jessica = new Person("j", "Jessica", birthday.minusYears(4), false);
         Person aston = new Person("a", "Aston", birthday.minusYears(40), true);
         Person martin = new Person("m", "Martin", birthday.minusYears(42), true);
@@ -135,10 +133,8 @@ public class Lambdas {
     }
 
     private int calculate(List<Integer> numbers) {
-        int result = 0;
-        for (int number : numbers)
-            result += number;
-        return result;
+        int sum = numbers.stream().mapToInt(number -> number.intValue()).sum();
+        return sum;
     }
 }
 
